@@ -15,13 +15,13 @@ import distros
 
 var cmd = ""
 if detectOs(Windows):
-    cmd = "cmd /c "
+  cmd = "cmd /c "
 
 task setup, "Download and generate":
-    exec cmd & "nimgen nimzbar.cfg"
+  exec cmd & "nimgen nimzbar.cfg"
 
 before install:
-    setupTask()
+  setupTask()
 
 task test, "Test":
-    exec "nim c -r tests/testzbar.nim"
+  exec "nim c -r tests/testzbar.nim"

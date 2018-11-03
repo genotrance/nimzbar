@@ -1,6 +1,6 @@
 # Package
 
-version       = "0.1.0"
+version       = "0.1.1"
 author        = "genotrance"
 description   = "zbar wrapper for Nim"
 license       = "MIT"
@@ -9,19 +9,22 @@ skipDirs = @["tests"]
 
 # Dependencies
 
-requires "nimgen >= 0.4.0"
+requires "nimgen >= 0.5.0"
 
-import distros
+var
+  name = "nimzbar"
+  cmd = when defined(Windows): "cmd /c " else: ""
 
-var cmd = ""
-if detectOs(Windows):
-  cmd = "cmd /c "
+mkDir(name)
 
-task setup, "Download and generate":
-  exec cmd & "nimgen nimzbar.cfg"
+task setup, "Checkout and generate":
+  if gorgeEx(cmd & "nimgen").exitCode != 0:
+    withDir(".."):
+      exec "nimble install nimgen -y"
+  exec cmd & "nimgen " & name & ".cfg"
 
 before install:
   setupTask()
 
-task test, "Test":
-  exec "nim c -r tests/testzbar.nim"
+task test, "Run tests":
+  exec "nim c -r tests/t" & name & ".nim"

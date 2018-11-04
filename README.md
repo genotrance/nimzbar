@@ -12,6 +12,8 @@ Nimzbar can be installed via [Nimble](https://github.com/nim-lang/nimble):
 
 This will download, wrap and install nimzbar in the standard Nimble package location, typically ~/.nimble. Once installed, it can be imported into any Nim program.
 
+Nimzbar is not supported on Mac as of yet. PRs enabling support are welcome.
+
 __Usage__
 
 Module documentation can be found [here](http://nimgen.genotrance.com/nimzbar).

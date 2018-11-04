@@ -15,6 +15,9 @@ var
   name = "nimzbar"
   cmd = when defined(Windows): "cmd /c " else: ""
 
+if defined(MacOSX):
+  quit(1)
+
 mkDir(name)
 
 task setup, "Checkout and generate":

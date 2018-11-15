@@ -16,9 +16,11 @@ var
   cmd = when defined(Windows): "cmd /c " else: ""
 
 if defined(MacOSX):
+  echo "Install failed, package is not supported on MacOSX"
   quit(1)
 
-mkDir(name)
+if fileExists(name & ".nimble"):
+  mkDir(name)
 
 task setup, "Checkout and generate":
   if gorgeEx(cmd & "nimgen").exitCode != 0:

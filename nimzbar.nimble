@@ -1,6 +1,6 @@
 # Package
 
-version       = "0.1.0"
+version       = "0.1.1"
 author        = "genotrance"
 description   = "zbar wrapper for Nim"
 license       = "MIT"
@@ -16,8 +16,7 @@ var
   cmd = when defined(Windows): "cmd /c " else: ""
 
 if defined(MacOSX):
-  echo "Install failed, package is not supported on MacOSX"
-  quit(1)
+  raise newException(Exception, "Install failed, package is not supported on MacOSX")
 
 if fileExists(name & ".nimble"):
   mkDir(name)
